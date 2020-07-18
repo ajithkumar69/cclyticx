@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText NAME,ADDRESS,CITY,STATE,ZIP_CODE,MOBILE_NUMBER,EMAIL,COUNTRY,PASSWORD,RE_ENTER_PASSWORD;
     Button REGISTER;
+    String emailPattern = "^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@cclyticx.com$";
+
 
 
     @Override
@@ -71,11 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Toast.makeText(MainActivity.this,"Enter The Required Ddetails",Toast.LENGTH_LONG).show();
                 }
-                else if (EMAIL.getText().toString().equals(""))
-                {
-                    Toast.makeText(MainActivity.this,"Enter The Required Ddetails",Toast.LENGTH_LONG).show();
-                }
-                else if (COUNTRY.getText().toString().equals(""))
+
+                mail();
+
+                if (COUNTRY.getText().toString().equals(""))
                 {
                     Toast.makeText(MainActivity.this,"Enter The Required Ddetails",Toast.LENGTH_LONG).show();
                 }
@@ -88,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Enter The Required Ddetails",Toast.LENGTH_LONG).show();
                 }
                 else if (p.equals(p2)) {
-
                     register();
 
                 }
@@ -98,8 +98,23 @@ public class MainActivity extends AppCompatActivity {
                     RE_ENTER_PASSWORD.setText("");
                 }
 
+
             }
         });
+
+    }
+
+    private void mail() {
+        if(EMAIL.getText().toString().isEmpty()) {
+            Toast.makeText(getApplicationContext(),"enter email address",Toast.LENGTH_SHORT).show();
+        }else {
+            if (EMAIL.getText().toString().trim().matches(emailPattern)) {
+                Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
+                EMAIL.setText("");
+            }
+        }
 
     }
 
