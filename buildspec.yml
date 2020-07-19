@@ -1,11 +1,7 @@
 version: 0.2
-- run:
-      name: chmod permissions
-      command: chmod +x ./gradlew  
+  
 phases:
   build:
     commands:  
       - ./gradlew assembleDebug
-artifacts:
-  files:
-    -
+
